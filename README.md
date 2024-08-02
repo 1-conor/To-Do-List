@@ -21,7 +21,8 @@ A simple to-do list application to help manage your tasks.
    cd To-Do-List
 
 3. **Open `index.html` in your web browser to see the app**
-
+   ```sh
+   open index.html
 
 ## Tutorial
 This project was built by following a tutorial on YouTube by GreatStack. You can find the video [here](https://www.youtube.com/watch?v=G0jO8kUrg-I)

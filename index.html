@@ -5,22 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
+    integrity="sha512-..." crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
         <div class="todo-app">
-            <h2>To-Do List <img src="images/checklist_icon.png"></h2>
-            <div class="row">
-                <input type="text" id="input-box" placeholder="Add your text">
-                <button onclick="addTask()">Add</button>
+            <header class="header">
+                <h1>To-Do List <img src="images/checklist_icon.png"></h1>
+            </header>
+            <nav class="sidebar">
+                <ul class="nav">
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Today</li>
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> This Week</li>
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Categories</li>
+                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Notes</li>
+                </ul>
+                <div class="add">
+                    <button id="add-task">+</button>
+                </div>
+            </nav>
+            <div class="main">
+                <ul id="list-container"></ul>
             </div>
-            <ul id="list-container">
-                <!-- <li class="checked">Task 1</li>
-                <li>Task 2</li>
-                <li>Task 3</li> -->
-            </ul>
         </div>
     </div>
+
+    <!-- Add task modal -->
+    <div id="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Add Task</h1>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add your text">
+                <button class="add-now" onclick="addTask()">Add</button>
+            </div>
+        </div>
+    </div>
+
 <script src="script.js"></script>
 </body>
 </html>
