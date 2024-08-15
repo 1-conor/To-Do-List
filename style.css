@@ -80,10 +80,10 @@
     background: #edeef0;
     border-radius: 30px;
     padding-left: 20px;
-    margin-bottom: 25px;
+    margin: 5px 0;
 }
 
-input {
+input, textarea {
     border: 1px solid #002765;
     outline: none;
     border-radius: 10px;
@@ -98,6 +98,18 @@ input {
 
 #date-box {
     width: 20%;
+}
+
+#description {
+    margin-top: -10px;
+}
+
+#description-box {
+    width: 100%;
+}
+
+#priority-box {
+    margin: 10px 0;
 }
 
 #priority-options {
@@ -226,6 +238,12 @@ input {
 
 .nav-item:hover {
     transform: scale(1.05);
+}
+
+.nav-item.active {
+    color: #002765;
+    font-weight: 700;
+    transform: scale(1.1);
 }
 
 ul li {

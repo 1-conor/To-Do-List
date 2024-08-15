@@ -2,7 +2,9 @@
 A simple to-do list application to help manage your tasks.
 
 ## Features
-- Add new tasks
+- Add new tasks and assign them a name, date and priority
+- View task details and see tasks listed in date order
+- Filter by upcoming deadlines and priority level
 - Mark tasks as completed
 - Delete tasks
 
@@ -25,4 +27,5 @@ A simple to-do list application to help manage your tasks.
    open index.html
 
 ## Tutorial
-This project was built by following a tutorial on YouTube by GreatStack. You can find the video [here](https://www.youtube.com/watch?v=G0jO8kUrg-I)
+The initial design of this project was built by following a tutorial on YouTube by GreatStack. You can find the video [here](https://www.youtube.com/watch?v=G0jO8kUrg-I)
+I have added more features to further enhance the project and make it my own.

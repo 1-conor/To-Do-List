@@ -17,10 +17,12 @@
             </header>
             <nav class="sidebar">
                 <ul class="nav">
-                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Today</li>
-                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> This Week</li>
-                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Categories</li>
-                    <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Notes</li>
+                    <li class="nav-item" data-filter="all"><i class="fa-solid fa-arrow-right"></i> All Tasks</li>
+                    <li class="nav-item" data-filter="today"><i class="fa-solid fa-arrow-right"></i> Today</li>
+                    <li class="nav-item" data-filter="week"><i class="fa-solid fa-arrow-right"></i> This Week</li>
+                    <li class="nav-item" data-filter="priority-low"><i class="fa-solid fa-arrow-right"></i> Low Priority</li>
+                    <li class="nav-item" data-filter="priority-medium"><i class="fa-solid fa-arrow-right"></i> Medium Priority</li>
+                    <li class="nav-item" data-filter="priority-high"><i class="fa-solid fa-arrow-right"></i> High Priority</li>
                 </ul>
                 <div class="sidebar-bottom">
                     <button id="add-btn">+</button>
@@ -64,11 +66,14 @@
             <span class="close">&times;</span>
             <h1>Add Task</h1>
             <div class="row">
-                <input type="text" id="input-box" placeholder="Add your text">
+                <input type="text" id="input-box" placeholder="Add task title">
                 <input type="date" id="date-box">
                 <button class="button" onclick="addTask()">Add</button>
             </div>
-            <div class="row">
+            <div class="row" id="description">
+                <textarea id="description-box" rows="4" placeholder="Add task description (optional)"></textarea>
+            </div>
+            <div class="row" id="priority">
                 <h2>Priority: </h2>
                 <div id="priority-options">
                     <label for="low">
