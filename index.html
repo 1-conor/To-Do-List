@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-..." crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="container">
         <div class="todo-app">
             <header class="header">
-                <h1>To-Do List <img src="images/checklist_icon.png"></h1>
+                <h1>To-Do List <i class="fa-solid fa-list-check"></i></h1>
             </header>
             <nav class="sidebar">
                 <ul class="nav">
@@ -21,8 +22,34 @@
                     <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Categories</li>
                     <li class="nav-item"><i class="fa-solid fa-arrow-right"></i> Notes</li>
                 </ul>
-                <div class="add">
-                    <button id="add-task">+</button>
+                <div class="sidebar-bottom">
+                    <button id="add-btn">+</button>
+                    <div id="color-options">
+                        <label for="purple">
+                            <input type="radio" id="purple" name="color" value="purple" required>
+                            <span class="custom-radio purple"></span>
+                        </label>
+                        <label for="red">
+                            <input type="radio" id="red" name="color" value="red" required>
+                            <span class="custom-radio red"></span>
+                        </label>
+                        <label for="blue">
+                            <input type="radio" id="blue" name="color" value="blue" required>
+                            <span class="custom-radio blue"></span>
+                        </label>
+                        <label for="pink">
+                            <input type="radio" id="pink" name="color" value="pink" required>
+                            <span class="custom-radio pink"></span>
+                        </label>
+                        <label for="green">
+                            <input type="radio" id="green" name="color" value="green" required>
+                            <span class="custom-radio green"></span>
+                        </label>
+                        <label for="yellow">
+                            <input type="radio" id="yellow" name="color" value="yellow" required>
+                            <span class="custom-radio yellow"></span>
+                        </label>
+                    </div>
                 </div>
             </nav>
             <div class="main">
@@ -32,13 +59,43 @@
     </div>
 
     <!-- Add task modal -->
-    <div id="modal">
+    <div class="modal" id="add-task-modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h1>Add Task</h1>
             <div class="row">
                 <input type="text" id="input-box" placeholder="Add your text">
-                <button class="add-now" onclick="addTask()">Add</button>
+                <input type="date" id="date-box">
+                <button class="button" onclick="addTask()">Add</button>
+            </div>
+            <div class="row">
+                <h2>Priority: </h2>
+                <div id="priority-options">
+                    <label for="low">
+                        <input type="radio" id="low" name="priority" value="low" required>
+                        <span class="custom-radio"></span> Low
+                    </label>
+                    <label for="medium">
+                        <input type="radio" id="medium" name="priority" value="medium" required>
+                        <span class="custom-radio"></span> Medium
+                    </label>
+                    <label for="high">
+                        <input type="radio" id="high" name="priority" value="high" required>
+                        <span class="custom-radio"></span> High
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="see-details-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Task Details</h1>
+            <div class="task-details">
+                <p>Name</p>
+                <p>Date</p>
+                <p>Priority</p>
             </div>
         </div>
     </div>
