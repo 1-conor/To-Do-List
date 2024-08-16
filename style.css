@@ -9,6 +9,18 @@
     --primary-color: #966DE8;
 }
 
+body {
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.task-date, .task-name {
+    font-size: 0.875rem;
+}
+
 .container {
     width: 100%;
     min-height: 100vh;
@@ -83,73 +95,9 @@
     margin: 5px 0;
 }
 
-input, textarea {
-    border: 1px solid #002765;
-    outline: none;
-    border-radius: 10px;
-    padding: 12px;
-    font-weight: 14px;
-    font-size: 16px;
-}
-
-#input-box {
-    width: 70%;
-}
-
-#date-box {
-    width: 20%;
-}
-
-#description {
-    margin-top: -10px;
-}
-
-#description-box {
-    width: 100%;
-}
-
-#priority-box {
-    margin: 10px 0;
-}
-
-#priority-options {
-    margin-left: 20px;
-}
-
-#priority-options label{
-    border: none;
-    outline: none;
-    padding: 10px;
-    background: #fff;
-    color: #002765;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 10px;
-    margin: 0 6px;
-    user-select: none;
-}
-
-#priority-options input[type="radio"] {
-    display: none;
-}
-
-.custom-radio {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #002765;
-    vertical-align: middle;
-    background-color: #fff;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-#priority-options input[type="radio"]:checked + .custom-radio {
-    background-color: var(--primary-color);
-}
-
 .sidebar-bottom {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
     height: 125px;
@@ -200,22 +148,22 @@ input, textarea {
     transform: scale(1.2);
 }
 
-.purple {
+.custom-radio.purple {
     background-color: #966DE8;
 }
-.red {
+.custom-radio.red {
     background-color: #E84C61;
 }
-.blue {
+.custom-radio.blue {
     background-color: #6D8FE8;
 }
-.pink {
+.custom-radio.pink {
     background-color: #E88FC3;
 }
-.green {
+.custom-radio.green {
     background-color: #6DE8A8;
 }
-.yellow {
+.custom-radio.yellow {
     background-color: #E8E36D;
 }
 
@@ -269,7 +217,7 @@ ul li {
 
 #list-container li {
     display: grid;
-    grid-template-columns: 1fr 5fr 2fr 2fr 1fr;
+    grid-template-columns: 1fr 4fr 2fr 1fr 1fr;
     padding: 10px 0 10px 30px;
     margin-bottom: 5px;
     transition: background-color 0.1s, transform 0.1s;
@@ -322,9 +270,7 @@ ul li {
 }
 
 .task-date {
-    display: block;
-    font-size: 0.8rem;
-    color: #555;
+    display: none;
 }
 
 #see-details{
@@ -332,6 +278,13 @@ ul li {
     padding: 3px 15px;
     border-radius: 5px;
     font-size: 22px;
+    z-index: 1000;
+}
+
+#edit-details {
+    color: var(--primary-color);
+    padding: 3px 15px;
+    font-size: 26px;
     z-index: 1000;
 }
 
@@ -391,14 +344,183 @@ ul li {
     margin: 2% 0 0 3%;
   }
 
-  .button {
+  input, textarea {
+    border: 1px solid #002765;
+    outline: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 14px;
+    font-size: 16px;
+}
+
+#input-box, #edit-task-name {
+    width: 70%;
+}
+
+#date-box, #edit-task-date {
+    width: 20%;
+}
+
+#description {
+    margin-top: -10px;
+}
+
+#description-box, #edit-task-description {
+    width: 100%;
+}
+
+#priority-box {
+    margin: 10px 0;
+}
+
+#priority-options {
+    margin-left: 20px;
+}
+
+#priority-options label{
+    border: none;
+    outline: none;
+    padding: 10px;
+    background: #fff;
+    color: #002765;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 0 6px;
+    user-select: none;
+}
+
+#priority-options input[type="radio"] {
+    display: none;
+}
+
+.custom-radio {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #002765;
+    vertical-align: middle;
+    background-color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#priority-options input[type="radio"]:checked + .custom-radio {
+    background-color: var(--primary-color);
+}
+
+.button {
     border: none;
     outline: none;
     padding: 16px 50px;
     background: var(--primary-color);
     border: 1px solid #002765;
     color: #fff;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
     border-radius: 40px;
+    flex: 1;
+}
+
+.button:hover {
+    filter: brightness(120%);
+}
+
+@media (max-width: 1080px) {
+    #list-container li {
+        grid-template-columns: 1fr 3fr 3fr 2fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .todo-app {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 20px 10px 50px;
+    }
+
+    .todo-app nav {
+        grid-row: 2 / 3; 
+        grid-column: 1 / 2;
+        padding: 20px 10px;
+        border-right: none;
+        border-top: 2px solid #002765;
+        border-bottom: 4px solid #002765;
+    }
+
+    .todo-app .main {
+        grid-row: 3 / 4;
+        grid-column: 1 / 2;
+        padding: 20px 10px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    #add-btn {
+        align-self: flex-end;
+        margin: 0 20px 20px 0;
+    }
+
+    .row {
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+    #list-container li {
+        grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
+    }
+
+    #date-box, #edit-task-date {
+        width: 50%;
+        margin-right: 5%;
+    }
+
+    #list-container .task-name {
+        padding-right: 0;
+    }
+
+    .details-btn, .edit-btn, .delete {
+        font-size: 14px;
+    }
+    .buttom {
+        font-size: 0.75rem;
+        padding: 10px 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+
+    .todo-app {
+        width: 100%;
+        min-height: 90vh;
+        padding: 20px 10px 40px;
+    }
+
+    .todo-app nav {
+        padding: 10px 5px;
+    }
+
+    .todo-app .main {
+        padding: 10px 5px;
+    }
+
+    .row {
+        gap: 5px;
+        padding-left: 10px;
+    }
+
+    .task-name {
+        font-size: 12px;
+    }
+
+    #add-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
 }

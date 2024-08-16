@@ -70,6 +70,7 @@ function addTask() {
       <span class="task-name">${inputBox.value}</span>
       <span class="task-date">${date}</span>
       <span class="details"><button class="button details-btn" id="see-details">Details</button></span>
+      <span class="edit"><i class="bi bi-pencil-square edit-btn" id="edit-details"></i></span>
       <span class="delete"><i class="bi bi-x-lg"></i></span>`;
   li.classList.add('list-item');
   li.classList.add('priority-' + selectedPriority);
@@ -103,6 +104,14 @@ listContainer.addEventListener("click", function(e) {
     e.stopImmediatePropagation();
     const listItem = e.target.closest(".list-item");
     showDetails(listItem);
+    return;
+  }
+
+  // Check if the "Edit" button was clicked
+  if (e.target.classList.contains("edit-btn")) {
+    e.stopImmediatePropagation();
+    const listItem = e.target.closest(".list-item");
+    editTask(listItem);
     return;
   }
 
@@ -310,4 +319,70 @@ function sortTasks() {
   });
 
   listItems.forEach(item => listContainer.appendChild(item)); // Re-append sorted items
+}
+
+function editTask(buttonElement) {
+  const listItem = buttonElement.closest('li');
+  const editTaskModal = document.getElementById('edit-task-modal');
+
+  // Populate the edit form with current task details
+  document.getElementById('edit-task-name').value = listItem.querySelector('.task-name').textContent;
+  const [day, month, year] = listItem.querySelector('.task-date').textContent.split('/');
+  document.getElementById('edit-task-date').value = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  document.getElementById('edit-task-description').value = listItem.dataset.description;
+
+  const priority = listItem.classList.contains('priority-low') ? 'low' :
+                   listItem.classList.contains('priority-medium') ? 'medium' : 'high';
+  document.querySelector(`input[name="edit-priority"][value="${priority}"]`).checked = true;
+
+  // Display the edit modal
+  editTaskModal.style.display = 'block';
+
+  // Close the modal when the close button is clicked
+  const closeSpan = editTaskModal.getElementsByClassName('close')[0];
+  closeSpan.onclick = function() {
+      editTaskModal.style.display = 'none';
+  };
+
+  window.onclick = function(event) {
+      if (event.target == editTaskModal) {
+          editTaskModal.style.display = 'none';
+      }
+  };
+
+  // Save changes when the save button is clicked
+  document.getElementById('save-edit-btn').onclick = function() {
+      saveEditChanges(listItem);
+  };
+}
+
+function saveEditChanges(listItem) {
+  // Get the new values from the edit form
+  const updatedName = document.getElementById('edit-task-name').value;
+  const updatedDate = document.getElementById('edit-task-date').value;
+  const updatedDescription = document.getElementById('edit-task-description').value;
+
+  let updatedPriority = '';
+  const priorityRadios = document.getElementsByName('edit-priority');
+  for (const radio of priorityRadios) {
+      if (radio.checked) {
+          updatedPriority = radio.value;
+          break;
+      }
+  }
+
+  // Update the task in the DOM
+  listItem.querySelector('.task-name').textContent = updatedName;
+  listItem.querySelector('.task-date').textContent = formatDate(updatedDate);
+  listItem.dataset.description = updatedDescription;
+
+  listItem.classList.remove('priority-low', 'priority-medium', 'priority-high');
+  listItem.classList.add(`priority-${updatedPriority}`);
+
+  // Hide the edit modal
+  document.getElementById('edit-task-modal').style.display = 'none';
+
+  // Save the updated task list
+  saveData();
+  sortTasks();
 }

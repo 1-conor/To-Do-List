@@ -93,6 +93,7 @@
         </div>
     </div>
 
+    <!-- View Task Details Modal -->
     <div class="modal" id="see-details-modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -104,6 +105,41 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal" id="edit-task-modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Update Task</h1>
+            <div class="row">
+                <input type="text" id="edit-task-name" placeholder="Edit task title">
+                <input type="date" id="edit-task-date">
+                <button class="button" id="save-edit-btn">Save</button>
+            </div>
+            <div class="row" id="description">
+                <textarea id="edit-task-description" rows="4" placeholder="Edit task description"></textarea>
+            </div>
+            <div class="row" id="priority">
+                <h2>Priority: </h2>
+                <div id="priority-options">
+                    <label for="edit-low">
+                        <input type="radio" id="edit-low" name="edit-priority" value="low">
+                        <span class="custom-radio"></span> Low
+                    </label>
+                    <label for="edit-medium">
+                        <input type="radio" id="edit-medium" name="edit-priority" value="medium">
+                        <span class="custom-radio"></span> Medium
+                    </label>
+                    <label for="edit-high">
+                        <input type="radio" id="edit-high" name="edit-priority" value="high">
+                        <span class="custom-radio"></span> High
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 <script src="script.js"></script>
 </body>
